@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="guineaBean" 
+       class="com.franciszabala.example.spring.model.GuineaBean"
+       init-method="wakeFromSlumber" destroy-method="diveInToSleep"  lazy-init="true"> 
+       <property name="message" value="Hello from GuineaBean!"/>
+   </bean>
+
+   <bean id ="employee1"
+   	class="com.franciszabala.example.spring.model.Employee"  init-method="initMethod" lazy-init="false">
+   	   		<property name="name" value="Mrs. Derpinson"></property>
+   			<property name="address"><ref bean="address1" /></property>
+   	</bean>
+   
+
+	<bean id = "address1" 
+		class="com.franciszabala.example.spring.model.Address" init-method="initMethod"  lazy-init="false">
+		</bean>
+		
+	<bean id ="employee2"
+   	class="com.franciszabala.example.spring.model.Employee" init-method="initMethod" lazy-init="true">
+   	<!-- using applicationcontext, references are initialized first -->
+   		<property name="name" value="Mr. Derpinson"></property>
+   		<property name="address"><ref bean="address2" /></property>
+   	</bean>
+
+   	<bean id = "address2" 
+		class="com.franciszabala.example.spring.model.Address" init-method="initMethod"  lazy-init="true">
+		</bean>
+
+</beans>
